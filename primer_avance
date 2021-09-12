@@ -5,12 +5,12 @@
 
 using namespace std;
 
-int saldo=100, retiro, ingreso_sueldo=3000,total_dinero,menu;
+int saldo=100, retiro, ingreso_sueldo=3000,total_dinero,menu, menu1;
 int cuenta_luz=180, cuenta_agua=100, cuenta_comunicaciones=200,cuenta_alquiler=800;
 int cantidad;
- int sumFraccion = 0;
- int billetes[] = { 10, 20, 50, 100, 200 };
- vector<int> fract;
+int sumFraccion = 0;
+int billetes[] = { 10, 20, 50, 100, 200 };
+vector<int> fract;
  
 int main(){
 	total_dinero = ingreso_sueldo+saldo;
@@ -22,7 +22,7 @@ cout<<"           Cajero Virtual       "<<endl;
 cout<<"***********************************"<<endl<<endl;
 cout<<"Bienvenido a tu asistente financiero virtual"<<endl;
 cout<<"¿Que accion deseas realizar?"<<endl<<endl;
-cout<<"(menu)"<<endl;
+
 cout<<"1. verificar el estado de mi cuenta"<<endl;
 cout<<"2. me gustaria sacar algo de dinero"<<endl;
 cout<<"3. Quisiera realizar el pago de mis servicios"<<endl;
@@ -34,11 +34,11 @@ cin>>menu;
 switch(menu){
 	case 1: 
 		cout<<" Hola, en este momento dispones de "<<total_dinero-cantidad<<endl;
-		goto inicio;
+			
+	goto inicio;		
 	break;
 	
 	case 2:
-	//	cout<<"Cuanto dinero deseas retirar "<<endl;
 	
     cout << "Ingrese la cantidad que deseas retirar: ";
     cin >> cantidad;
