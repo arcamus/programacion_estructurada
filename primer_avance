@@ -1,0 +1,121 @@
+#include <iostream>
+#include<ctime>
+#include <vector>
+#include <cstdlib>
+
+using namespace std;
+
+int saldo=100, retiro, ingreso_sueldo=3000,total_dinero,menu;
+int cuenta_luz=180, cuenta_agua=100, cuenta_comunicaciones=200,cuenta_alquiler=800;
+int cantidad;
+ int sumFraccion = 0;
+ int billetes[] = { 10, 20, 50, 100, 200 };
+ vector<int> fract;
+ 
+int main(){
+	total_dinero = ingreso_sueldo+saldo;
+//menu de bienvenida
+inicio:
+cout<<endl;
+cout<<"***********************************"<<endl;
+cout<<"           Cajero Virtual       "<<endl;
+cout<<"***********************************"<<endl<<endl;
+cout<<"Bienvenido a tu asistente financiero virtual"<<endl;
+cout<<"¿Que accion deseas realizar?"<<endl<<endl;
+cout<<"(menu)"<<endl;
+cout<<"1. verificar el estado de mi cuenta"<<endl;
+cout<<"2. me gustaria sacar algo de dinero"<<endl;
+cout<<"3. Quisiera realizar el pago de mis servicios"<<endl;
+cout<<"4. Como voy con mis finanzas, me gustaria salir"<<endl;
+cout<<"5. Salir.."<<endl;
+cin>>menu;
+
+
+switch(menu){
+	case 1: 
+		cout<<" Hola, en este momento dispones de "<<total_dinero-cantidad<<endl;
+		goto inicio;
+	break;
+	
+	case 2:
+	//	cout<<"Cuanto dinero deseas retirar "<<endl;
+	
+    cout << "Ingrese la cantidad que deseas retirar: ";
+    cin >> cantidad;
+    sumFraccion = 0;
+    
+    while (sumFraccion < cantidad)
+    {
+        sumFraccion = 0;
+       
+        for (int i = 0; i < fract.size(); i++)
+        {
+
+            sumFraccion += fract[i];
+            
+        }
+
+        if (sumFraccion < cantidad)
+        {
+            srand(time(NULL));
+            int posFraccion = rand() % ((5 - 1) + 1) + 0;
+           
+            if ((billetes[posFraccion] + sumFraccion) <= cantidad)
+            {
+                fract.push_back(billetes[posFraccion]);
+                sumFraccion = sumFraccion + billetes[posFraccion];
+            }
+        }
+    }
+     cout << "Cortes: ";
+
+    for (int j = 0; j < fract.size(); j++)
+    {
+        cout << fract[j] << ", ";
+    }
+    
+	goto inicio;
+    return 0;
+    
+	break;
+	
+		
+	case 3:
+	cout<<"Dispones de: "<<total_dinero-cantidad<<" Bs"<<endl;
+	cout<<"tus pagos pendientes son: "<<endl;
+	cout<<"Luz y energia electrica: "<<cuenta_luz<<" Bs"<<endl;
+	cout<<"Agua y alcantarillado: "<<cuenta_agua<<" Bs"<<endl;
+	cout<<"Telefono e internet: "<<cuenta_comunicaciones<<" Bs"<<endl;
+	cout<<"Alquiler: "<<cuenta_alquiler<<" Bs"<<endl<<endl;
+	
+	int opcion;
+	cout<<"Deseas realizar estos pagos?"<<endl;
+	cout<<"1.Si"<<endl;
+	cout<<"2.Aun no"<<endl;
+	
+	cin>>opcion;
+	switch(opcion){
+		case 1: total_dinero = total_dinero-cuenta_luz-cuenta_agua-cuenta_comunicaciones-cuenta_alquiler;
+		cout<<"Tu dinero restante es de "<<total_dinero-cantidad<<" Bs"<<endl;
+		break;
+		case 2: cout<<"Dispones de "<<total_dinero-cantidad<<" Bs";
+		break;
+		default: cout<<"Saliendo...";
+	}
+	goto inicio;
+	
+	case 4: 
+		cout<<"En este momento dispones de "<<total_dinero-cantidad<<" Bs"<<endl;
+		if((total_dinero-cantidad) > 500){
+			cout<<"dispones de suficiente dinero para salir"<<endl;
+		}
+		else{
+			cout<<"Tienes pocos recursos, te recomiendo evites gastos innecesarios"<<endl;
+		}
+	
+		goto inicio;
+	case 5:
+		cout<<"Hasta pronto..."<<endl;
+	}
+
+}
